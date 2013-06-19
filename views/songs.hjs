@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Songs</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="javascripts/jquery.js"></script>
+    <script type="text/javascript">
+
+    function requestSong(i) {
+        //window.alert('requestSong!');
+        $.ajax({
+          url: "queue?i=" + i,
+          context: document.body
+        }).done(function(data) {
+          //$(this).addClass("done");
+          window.alert('queue says ' + data + '!');
+        });
+    }
+
+    </script>
+  </head>
+  <body>
+    <h1>Songs</h1>
+    <table class="songs">
+      {{#songs}}
+        <tr>
+          <td>&nbsp;</td>
+          <td onclick="requestSong('{{i}}')">
+            <div >
+                <div class="t">{{song}}</div>
+                <div class="o">{{artist}} - {{album}}</div>
+            </div>
+          </td>
+        </tr>
+      {{/songs}}
+    </table>
+  </body>
+</html>
